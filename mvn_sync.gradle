@@ -1,6 +1,12 @@
 apply plugin: 'maven'
 apply plugin: 'signing'
+project.extensions.create("mavenConfig", MavenConfig)
 
+class MavenConfig {
+    String artifactId
+    String groupId
+    String type = "aar"
+}
 
 configurations {
     deployerJars
@@ -16,21 +22,29 @@ uploadArchives {
             beforeDeployment {
                 MavenDeployment deployment -> signing.signPom(deployment)
             }
-
-            pom.artifactId = project['ARTIFACT_ID']
-            pom.groupId = project['GROUP_ID']
-
-            def USERNAME = project.getProperties().get("USERNAME")
-            def PASSWORD = project.getProperties().get("PASSWORD")
-            def BUILD_VERSION = project.getProperties().get("BUILD_VERSION")
-            if (null != BUILD_VERSION) {
-                pom.version = BUILD_VERSION
-            }
-            repository(url: project['MAVEN_REPO_RELEASE_URL']) {
-                authentication(userName: USERNAME, password: PASSWORD)
-            }
-            snapshotRepository(url: project['MAVEN_REPO_SNAPSHOT_URL']) {
-                authentication(userName: USERNAME, password: PASSWORD)
+            afterEvaluate {
+                pom.artifactId = project.mavenConfig.artifactId
+                if (pom.artifactId==null){
+                    pom.artifactId = project['ARTIFACT_ID']
+                }
+                pom.groupId = project.mavenConfig.groupId
+                if (pom.groupId==null){
+                    pom.groupId = project['GROUP_ID']
+                }
+                def BUILD_VERSION = project.getProperties().get("BUILD_VERSION")
+                if (null != BUILD_VERSION) {
+                    pom.version = BUILD_VERSION
+                }
+                def USERNAME = project.getProperties().get("USERNAME")
+                def PASSWORD = project.getProperties().get("PASSWORD")
+                def MAVEN_REPO_RELEASE_URL = 'https://repo.rdc.aliyun.com/repository/49107-release-3gYVam/'
+                repository(url: MAVEN_REPO_RELEASE_URL) {
+                    authentication(userName: USERNAME, password: PASSWORD)
+                }
+                def MAVEN_REPO_SNAPSHOT_URL = 'https://repo.rdc.aliyun.com/repository/49107-snapshot-egC0LB/'
+                snapshotRepository(url: MAVEN_REPO_SNAPSHOT_URL) {
+                    authentication(userName: USERNAME, password: PASSWORD)
+                }
             }
         }
     }
