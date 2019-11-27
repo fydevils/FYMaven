@@ -7,7 +7,7 @@
 
 apply from: 'https://raw.githubusercontent.com/fydevils/FYMaven/master/mvn_sync.gradle'
 
-### b.参数配置支持两种方式，选择一种即可
+### b.参数配置两种方式
 #### 1)gradle.properties文件中添加
 ```
 ARTIFACT_ID = t_test
