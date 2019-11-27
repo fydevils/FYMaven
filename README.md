@@ -1,34 +1,34 @@
 ## 1.FYMaven
-×é¼ş´ò°ü·¢²¼µ½maven²Ö¿â
+ç»„ä»¶æ‰“åŒ…å‘å¸ƒåˆ°mavenä»“åº“
  
 
-## 2.Ê¹ÓÃ
-### a.ÔÚ×é¼ş¹¤³Ìbuild.gradleÖĞÌí¼ÓÈçÏÂ
+## 2.ä½¿ç”¨
+### a.åœ¨ç»„ä»¶å·¥ç¨‹build.gradleä¸­æ·»åŠ å¦‚ä¸‹
 
 apply from: 'https://raw.githubusercontent.com/fydevils/FYMaven/master/mvn_sync.gradle'
 
-### b.²ÎÊıÅäÖÃÁ½ÖÖ·½Ê½
-#### 1)gradle.propertiesÎÄ¼şÖĞÌí¼Ó
-'''
+### b.å‚æ•°é…ç½®ä¸¤ç§æ–¹å¼
+#### 1)gradle.propertiesæ–‡ä»¶ä¸­æ·»åŠ 
+```
 ARTIFACT_ID = t_test
 GROUP_ID=com.foryou.common
-'''
+```
 
-#### 2)ÔÚ×é¼şbuild.gradle×îµ×²¿Ìí¼Ó
-'''
+#### 2)åœ¨ç»„ä»¶build.gradleæœ€åº•éƒ¨æ·»åŠ 
+```
 mavenConfig{
     artifactId = "t_test"
     groupId = "com.foryou.common"
 }
-'''
+```
 
-### c.Ê¹ÓÃuploadArchivesÃüÁî½øĞĞÉÏ´«
-'''
+### c.ä½¿ç”¨uploadArchiveså‘½ä»¤è¿›è¡Œä¸Šä¼ 
+```
 eg:
 
 gradlew t_test:uploadArchives -P USERNAME=*** -P PASSWORD=*** -P BUILD_VERSION=***
 
-'''
+```
 
 
 
