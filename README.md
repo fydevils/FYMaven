@@ -16,7 +16,7 @@ GROUP_ID=com.foryou.common
 
 #### 2)在组件build.gradle最底部添加
 ```
-mavenConfig{
+fyMavenConfig{
     artifactId = "t_test"
     groupId = "com.foryou.common"
 }
