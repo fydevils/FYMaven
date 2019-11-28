@@ -1,6 +1,6 @@
 apply plugin: 'maven'
 apply plugin: 'signing'
-project.extensions.create("mavenConfig", MavenConfig)
+project.extensions.create("fyMavenConfig", MavenConfig)
 
 class MavenConfig {
     String artifactId
@@ -23,11 +23,11 @@ uploadArchives {
                 MavenDeployment deployment -> signing.signPom(deployment)
             }
             afterEvaluate {
-                pom.artifactId = project.mavenConfig.artifactId
+                pom.artifactId = project.fyMavenConfig.artifactId
                 if (pom.artifactId==null){
                     pom.artifactId = project['ARTIFACT_ID']
                 }
-                pom.groupId = project.mavenConfig.groupId
+                pom.groupId = project.fyMavenConfig.groupId
                 if (pom.groupId==null){
                     pom.groupId = project['GROUP_ID']
                 }
