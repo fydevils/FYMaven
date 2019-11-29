@@ -25,8 +25,9 @@ fyMavenConfig{
 ### c.使用uploadArchives命令进行上传
 ```
 eg:
+gradlew t_test:uploadArchives -P USERNAME=*** -P PASSWORD=*** -P BUILD_VERSION=*** -P ARTIFACT_ID=*** -P GROUP_ID=***
 
-gradlew t_test:uploadArchives -P USERNAME=*** -P PASSWORD=*** -P BUILD_VERSION=***
+
 
 ```
 
